@@ -27,21 +27,19 @@ struct Stat
 //массив с булочками
 Bulka nas[100]{
     {"Fin", "Tik", "Fer", false, true, 0, 1, 3}, {"Tit", "Tou", "Fos", true, true, 0, 1, 3},
-    {"Foc", "Tik", "Fer", false, true, 0, 1, 3}, {"Tou", "Tou", "Fos", true, true, 0, 1, 3}
+    {"Foc", "Tik", "Fer", false, true, 0, 1, 3}, {"Tos", "Tou", "Fos", true, true, 0, 1, 3},
+    {"Fat", "Tik", "Fer", false, true, 0, 1, 3}, {"Ter", "Tou", "Fos", true, true, 0, 1, 3},
+    {"Fuk", "Tik", "Fer", false, true, 0, 1, 3}, {"Tin", "Tou", "Fos", true, true, 0, 1, 3}
 };
 
 Stat Itigo;
 
 string fname[]{ "Fat", "Fik", "Fuk", "Fer", "Fin", "Foc", "Fos" };
 string tname[]{ "Tat", "Tik", "Tuk", "Ter", "Tin", "Toc", "Tos" };
-int live = 4; //число живых булочек
+int live = 8; //число живых булочек
 int day; //счёт дней жизни цивилизации
 int god = 0; //для божественных решений
 int tlive = live;
-int t = 10;
-int T[50];
-int f = 10;
-int F[50];
 
 void Burn() {
 
@@ -65,7 +63,7 @@ int main()
         for (int i = 0; i < live; i++)
         {
             cout << i + 1 << ". " << nas[i].name << " " << nas[i].tname << " " << nas[i].fname << "\n"
-                << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n";
+                 << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n";
         }
 
         //размножение
