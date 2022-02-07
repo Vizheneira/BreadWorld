@@ -27,16 +27,13 @@ struct Stat
 //массив с булочками
 Bulka nas[100]{
     {"Fin", "Tik", "Fer", false, true, 0, 1, 3}, {"Tit", "Tou", "Fos", true, true, 0, 1, 3},
-    {"Foc", "Tik", "Fer", false, true, 0, 1, 3}, {"Tos", "Tou", "Fos", true, true, 0, 1, 3},
-    {"Fat", "Tik", "Fer", false, true, 0, 1, 3}, {"Ter", "Tou", "Fos", true, true, 0, 1, 3},
-    {"Fuk", "Tik", "Fer", false, true, 0, 1, 3}, {"Tin", "Tou", "Fos", true, true, 0, 1, 3}
+    {"Foc", "Tik", "Fer", false, true, 0, 1, 3}, {"Tos", "Tou", "Fos", true, true, 0, 1, 3}
 };
 
 Stat Itigo;
 
-string fname[]{ "Fat", "Fik", "Fuk", "Fer", "Fin", "Foc", "Fos" };
-string tname[]{ "Tat", "Tik", "Tuk", "Ter", "Tin", "Toc", "Tos" };
-int live = 8; //число живых булочек
+string name[]{ "ari", "otu", "ery", "ood", "ute", "ite", "eur", "opu", "ujo", "asu" };
+int live = 4; //число живых булочек
 int day; //счёт дней жизни цивилизации
 int god = 0; //для божественных решений
 int tlive = live;
@@ -63,7 +60,7 @@ int main()
         for (int i = 0; i < live; i++)
         {
             cout << i + 1 << ". " << nas[i].name << " " << nas[i].tname << " " << nas[i].fname << "\n"
-                 << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n";
+                 << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n\n";
         }
 
         //размножение
@@ -71,7 +68,7 @@ int main()
         tlive = live;
         int fail = 0;
 
-        for (int rod = 0; rod < live / 4; rod = rod)
+        for (int rod = 0; rod < live / 3; rod = rod)
         {
             //на случай зацикливания
             if (fail > 10) break;
@@ -102,16 +99,16 @@ int main()
                     if (G < 1)
                     {
                         //если n - tru
-                        if (nas[n].gender > 0) nas[tlive] = { fname[N], nas[n].name, nas[h].name,
+                        if (nas[n].gender > 0) nas[tlive] = { "F" + name[N], nas[n].name, nas[h].name,
                                                               false, false, 0, 0, 3 };
-                        else nas[tlive] = { fname[N], nas[h].name, nas[n].name,
+                        else nas[tlive] = { "F" + name[N], nas[h].name, nas[n].name,
                                             false, false, 0, 0, 3 };
                     }
                     else
                     {
-                        if (nas[n].gender > 0) nas[tlive] = { tname[N], nas[n].name, nas[h].name,
+                        if (nas[n].gender > 0) nas[tlive] = { "T" + name[N], nas[n].name, nas[h].name,
                                                               true, false, 0, 0, 3 };
-                        else nas[tlive] = { tname[N], nas[h].name, nas[n].name,
+                        else nas[tlive] = { "T" + name[N], nas[h].name, nas[n].name,
                                             true, false, 0, 0, 3 };
                     }
                     cout << nas[n].name << " " << nas[n].tname << " " << nas[n].fname << "\n";
@@ -132,22 +129,22 @@ int main()
                     int ch = tlive;
                     if (nas[n].gender > 0)
                     {
-                        nas[ch] = { fname[N], nas[n].name, nas[h].name,
+                        nas[ch] = { "F" + name[N], nas[n].name, nas[h].name,
                                     false, false, 0, 0, 3 };
                         cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n";
                         ch++;
-                        nas[ch] = { tname[N], nas[n].name, nas[h].name,
+                        nas[ch] = { "T" + name[N], nas[n].name, nas[h].name,
                                        true, false, 0, 0, 3 };
                         cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n\n";
                         ch++;
                     }
                     else
                     {
-                        nas[ch] = { fname[N], nas[h].name, nas[n].name,
+                        nas[ch] = { "F" + name[N], nas[h].name, nas[n].name,
                                     false, false, 0, 0, 3 };
                         cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n";
                         ch++;
-                        nas[ch] = { tname[N], nas[h].name, nas[n].name,
+                        nas[ch] = { "T" + name[N], nas[h].name, nas[n].name,
                                     true, false, 0, 0, 3 };
                         cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n\n";
                         ch++;
@@ -157,12 +154,15 @@ int main()
                     nas[h].chaild = nas[h].chaild + 2;
                 }
                 rod++;
+                Itigo.burn++;
             }
+            else fail++;
         }
 
         live = tlive;
 
         //смерть
+        cout << "\n Death:\n";
         tlive = live;
         for (int i = 0; i < live; i++)
         {
@@ -173,7 +173,8 @@ int main()
                 nas[i].xp--;
                 if (nas[i].xp < 1)
                 {
-                    cout << nas[i].name << " - deat\n";
+                    cout << i + 1 << ". " << nas[i].name << " " << nas[i].tname << " " << nas[i].fname << "\n"
+                         << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n\n";
                     tlive--;
                     Itigo.death++;
 
