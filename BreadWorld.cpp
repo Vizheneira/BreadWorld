@@ -10,12 +10,12 @@ struct Bulka
     string name;
     string tname;
     string fname;
-    bool   gender;
-    bool   fertil;
-    int    chaild;
-    int    arge;
-    int    Gxp;
-    int    xp;
+    bool gender;
+    bool fertil;
+    int chaild;
+    int arge;
+    int Gxp;
+    int xp;
 };
 
 struct Stat
@@ -41,10 +41,6 @@ int day; //счёт дней жизни цивилизации
 int god = 0; //для божественных решений
 int tlive = live;
 
-void Burn() {
-
-}
-
 int main()
 {
     //случайные числа
@@ -66,8 +62,8 @@ int main()
         for (int i = 0; i < live; i++)
         {
             cout << i + 1 << ". " << nas[i].name << " " << nas[i].tname << " " << nas[i].fname << "\n"
-                 << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n" << 
-                 "Genetic: " << "xp" << nas[i].Gxp << "\n\n";
+                << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n" <<
+                "Genetic: " << "xp" << nas[i].Gxp << "\n\n";
         }
 
         //размножение
@@ -149,17 +145,17 @@ int main()
                             nas[ch] = { "F" + name[N], nas[n].name, nas[h].name,
                                         false, false, 0, 0, 3 };
                             cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n";
-                            
+
                             //случайным образом выбирает родителя, от которого наследует черту
                             if (Gen > 0) nas[ch].Gxp = nas[n].Gxp;
                             else nas[ch].Gxp = nas[h].Gxp;
                             nas[ch].xp = nas[ch].Gxp;
                             ch++;
-                            
+
                             nas[ch] = { "T" + name[N], nas[n].name, nas[h].name,
                                            true, false, 0, 0, 3 };
                             cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n\n";
-                            
+
                             if (Gen > 0) nas[ch].Gxp = nas[n].Gxp;
                             else nas[ch].Gxp = nas[h].Gxp;
                             nas[ch].xp = nas[ch].Gxp;
@@ -170,16 +166,16 @@ int main()
                             nas[ch] = { "F" + name[N], nas[h].name, nas[n].name,
                                         false, false, 0, 0, 3 };
                             cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n";
-                            
+
                             if (Gen > 0) nas[ch].Gxp = nas[n].Gxp;
                             else nas[ch].Gxp = nas[h].Gxp;
                             nas[ch].xp = nas[ch].Gxp;
                             ch++;
-                            
+
                             nas[ch] = { "T" + name[N], nas[h].name, nas[n].name,
                                         true, false, 0, 0, 3 };
                             cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n\n";
-                            
+
                             if (Gen > 0) nas[ch].Gxp = nas[n].Gxp;
                             else nas[ch].Gxp = nas[h].Gxp;
                             nas[ch].xp = nas[ch].Gxp;
@@ -213,7 +209,7 @@ int main()
                 if (nas[i].xp < 1)
                 {
                     cout << i + 1 << ". " << nas[i].name << " " << nas[i].tname << " " << nas[i].fname << "\n"
-                         << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n\n";
+                        << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n\n";
                     Itigo.Arg[Itigo.death] = nas[i].arge;
                     Itigo.Chil[Itigo.death] = nas[i].chaild;
                     tlive--;
