@@ -28,9 +28,9 @@ struct Stat
 };
 
 //массив с булочками
-Bulka nas[100]{
+Bulka nas[200]{
     {"Fin", "Tik", "Fer", false, true, 0, 1, 5, 5}, {"Tit", "Tou", "Fos", true, true, 0, 1, 3, 3},
-    {"Foc", "Tik", "Fer", false, true, 0, 1, 3, 3}, {"Tos", "Tou", "Fos", true, true, 0, 1, 3, 3}
+    {"Foc", "Tik", "Fer", false, true, 0, 1, 3, 3}, {"Tos", "Tou", "Fos", true, true, 0, 1, 1, 1}
 };
 
 Stat Itigo;
@@ -241,7 +241,7 @@ int main()
             for (int i = 0; i < Itigo.death; i++)
             {
                 s = s + Itigo.Chil[i];
-                cout << " " << Itigo.Arg[i];
+                //cout << " " << Itigo.Arg[i];
             }
             cout << "Sr. clildren: " << s / Itigo.death << "\n";
             break;
