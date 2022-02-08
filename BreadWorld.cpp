@@ -58,6 +58,9 @@ int main()
         cout << "dau " << day << "\n";
         Itigo.day = day;
 
+        int dayburn = 0;
+        int daydeat = 0;
+
         //пересчёт булочек
         cout << "\n In live:\n";
         for (int i = 0; i < live; i++)
@@ -188,6 +191,7 @@ int main()
                     }
                     rod++;
                     Itigo.burn++;
+                    dayburn++;
                 }
             }
             else fail++;
@@ -214,6 +218,7 @@ int main()
                     Itigo.Chil[Itigo.death] = nas[i].chaild;
                     tlive--;
                     Itigo.death++;
+                    daydeat++;
 
                     nas[live] = nas[i];
                     nas[i] = nas[live - 1];
@@ -222,6 +227,11 @@ int main()
             }
         }
         live = tlive;
+
+        cout << "\n";
+        cout << "Day: \n";
+        cout << " burn: " << dayburn << "\n";
+        cout << " deat: " << daydeat << "\n";
 
         //окончание в случае вымирания
         if (live < 1)
