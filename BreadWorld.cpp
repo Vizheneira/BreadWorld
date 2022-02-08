@@ -14,6 +14,7 @@ struct Bulka
     bool   fertil;
     int    chaild;
     int    arge;
+    int    Gxp;
     int    xp;
 };
 
@@ -28,8 +29,8 @@ struct Stat
 
 //массив с булочками
 Bulka nas[100]{
-    {"Fin", "Tik", "Fer", false, true, 0, 1, 3}, {"Tit", "Tou", "Fos", true, true, 0, 1, 3},
-    {"Foc", "Tik", "Fer", false, true, 0, 1, 3}, {"Tos", "Tou", "Fos", true, true, 0, 1, 3}
+    {"Fin", "Tik", "Fer", false, true, 0, 1, 5, 5}, {"Tit", "Tou", "Fos", true, true, 0, 1, 3, 3},
+    {"Foc", "Tik", "Fer", false, true, 0, 1, 3, 3}, {"Tos", "Tou", "Fos", true, true, 0, 1, 3, 3}
 };
 
 Stat Itigo;
@@ -62,7 +63,8 @@ int main()
         for (int i = 0; i < live; i++)
         {
             cout << i + 1 << ". " << nas[i].name << " " << nas[i].tname << " " << nas[i].fname << "\n"
-                 << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n\n";
+                 << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n" << 
+                 "Genetic: " << "xp" << nas[i].Gxp << "\n\n";
         }
 
         //размножение
@@ -96,6 +98,7 @@ int main()
                     //определение характеристик помёта
                     uniform_int_distribution<> RandGend(0, 1);
                     int G = RandGend(gen);
+                    int Gen = RandGend(gen);
                     uniform_int_distribution<> RandName(0, 6);
                     int N = RandName(gen);
                     //количество детей
@@ -106,17 +109,22 @@ int main()
                         {
                             //если n - tru
                             if (nas[n].gender > 0) nas[tlive] = { "F" + name[N], nas[n].name, nas[h].name,
-                                                                  false, false, 0, 0, 3 };
+                                                                  false, false, 0, 0, 3, 3 };
                             else nas[tlive] = { "F" + name[N], nas[h].name, nas[n].name,
-                                                false, false, 0, 0, 3 };
+                                                false, false, 0, 0, 3, 3 };
                         }
                         else
                         {
                             if (nas[n].gender > 0) nas[tlive] = { "T" + name[N], nas[n].name, nas[h].name,
-                                                                  true, false, 0, 0, 3 };
+                                                                  true, false, 0, 0, 3, 3 };
                             else nas[tlive] = { "T" + name[N], nas[h].name, nas[n].name,
-                                                true, false, 0, 0, 3 };
+                                                true, false, 0, 0, 3, 3 };
                         }
+                        //случайным образом выбирает родителя, от которого наследует черту
+                        if (Gen > 0) nas[tlive].Gxp = nas[n].Gxp;
+                        else nas[tlive].Gxp = nas[h].Gxp;
+                        nas[tlive].xp = nas[tlive].Gxp;
+
                         cout << nas[n].name << " " << nas[n].tname << " " << nas[n].fname << "\n";
                         cout << "    &&\n";
                         cout << nas[h].name << " " << nas[h].tname << " " << nas[h].fname << "\n";
@@ -138,10 +146,20 @@ int main()
                             nas[ch] = { "F" + name[N], nas[n].name, nas[h].name,
                                         false, false, 0, 0, 3 };
                             cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n";
+                            
+                            //случайным образом выбирает родителя, от которого наследует черту
+                            if (Gen > 0) nas[ch].Gxp = nas[n].Gxp;
+                            else nas[ch].Gxp = nas[h].Gxp;
+                            nas[ch].xp = nas[ch].Gxp;
                             ch++;
+                            
                             nas[ch] = { "T" + name[N], nas[n].name, nas[h].name,
                                            true, false, 0, 0, 3 };
                             cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n\n";
+                            
+                            if (Gen > 0) nas[ch].Gxp = nas[n].Gxp;
+                            else nas[ch].Gxp = nas[h].Gxp;
+                            nas[ch].xp = nas[ch].Gxp;
                             ch++;
                         }
                         else
@@ -149,10 +167,19 @@ int main()
                             nas[ch] = { "F" + name[N], nas[h].name, nas[n].name,
                                         false, false, 0, 0, 3 };
                             cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n";
+                            
+                            if (Gen > 0) nas[ch].Gxp = nas[n].Gxp;
+                            else nas[ch].Gxp = nas[h].Gxp;
+                            nas[ch].xp = nas[ch].Gxp;
                             ch++;
+                            
                             nas[ch] = { "T" + name[N], nas[h].name, nas[n].name,
                                         true, false, 0, 0, 3 };
                             cout << nas[ch].name << " " << nas[ch].tname << " " << nas[ch].fname << "\n\n";
+                            
+                            if (Gen > 0) nas[ch].Gxp = nas[n].Gxp;
+                            else nas[ch].Gxp = nas[h].Gxp;
+                            nas[ch].xp = nas[ch].Gxp;
                             ch++;
                         }
                         tlive = ch;
