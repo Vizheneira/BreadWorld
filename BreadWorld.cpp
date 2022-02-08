@@ -173,7 +173,7 @@ int main()
         tlive = live;
         for (int i = 0; i < live; i++)
         {
-            uniform_int_distribution<> RandDmg(2, 5);//продолжительность жизни
+            uniform_int_distribution<> RandDmg(2, 6);//продолжительность жизни
             int deat = RandDmg(gen);
             //если прожил сверх - -хр
             if (nas[i].arge >= deat)
@@ -184,6 +184,7 @@ int main()
                     cout << i + 1 << ". " << nas[i].name << " " << nas[i].tname << " " << nas[i].fname << "\n"
                          << "Gender: " << nas[i].gender << " Arge: " << nas[i].arge << " Chaild: " << nas[i].chaild << "\n\n";
                     Itigo.Arg[Itigo.death] = nas[i].arge;
+                    Itigo.Chil[Itigo.death] = nas[i].chaild;
                     tlive--;
                     Itigo.death++;
 
@@ -206,10 +207,16 @@ int main()
             for (int i = 0; i < Itigo.death; i++)
             {
                 s = s + Itigo.Arg[i];
+                //cout << " " << Itigo.Arg[i];
+            }
+            cout << "Sr. arge: " << s / Itigo.death << "\n";
+            s = 0;
+            for (int i = 0; i < Itigo.death; i++)
+            {
+                s = s + Itigo.Chil[i];
                 cout << " " << Itigo.Arg[i];
             }
-            cout << "\n Sr. arge: " << s / Itigo.death;
-
+            cout << "Sr. clildren: " << s / Itigo.death << "\n";
             break;
         }
         else
